@@ -16,6 +16,10 @@ export enum GameEngine {
   Unreal = "Unreal",
 }
 
+export enum Software{
+  Blender = "Blender"
+}
+
 export enum MediaType {
   Image = "image",
   YouTube = "youtube",
@@ -43,10 +47,21 @@ export interface AboutMeData {
 export interface Game {
   name: string;
   description: string;
+  job: string;
   genres: string[];
   source?: { name: string; url: string };
   links: { source: LinkImageSource; url: string }[];
   media: MediaItem[];
   platforms: Platform[];
   engine: GameEngine;
+}
+
+export interface Modeling{
+  name : string;
+  description: string;
+  media: MediaItem[];
+  software : Software;
+  source?: { name: string; url: string };
+  
+
 }

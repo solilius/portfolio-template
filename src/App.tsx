@@ -7,6 +7,7 @@ import SelfSummary from "./Components/SelfSummary";
 import AboutMe from "./Pages/AboutMe";
 import { Column } from "./Styles/StyledComponents";
 import Footer from "./Components/Footer";
+import ModelingPage from "./Pages/ModelingPage";
 
 const AppContainer = styled(Column)`
   min-height: 90vh;
@@ -62,6 +63,7 @@ const App: React.FC = () => {
 
         <Navbar>
           <NavbarLink to="/">Games 👾</NavbarLink>
+          <NavbarLink to="/3D-modeling">3D👾</NavbarLink>
           <NavbarLink to="/about-me">About me 👨🏻‍💻</NavbarLink>
           <NavbarLink to="/contact">Contact 💬</NavbarLink>
         </Navbar>
@@ -70,6 +72,7 @@ const App: React.FC = () => {
           <Route path="/" element={<MainPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/about-me" element={<AboutMe />} />
+          <Route path="/3D-modeling" element={<ModelingPage />} />
         </Routes>
       </AppContainer>
       <Footer />
