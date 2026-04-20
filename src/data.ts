@@ -4,7 +4,7 @@ export const PersonalInfo: AboutMeData = {
   name: "TAN WEN JUN",
   role: "GGGGGG",
   introduction: "GGGG",
-  description: "TELL_ABOUT_YOURSELF",
+  description: "wwww",
   image: `${process.env.PUBLIC_URL}/images/Profile.jpg`,
   cvUri: `${process.env.PUBLIC_URL}/files/YOUR_CV.pdf`,
   links: {
