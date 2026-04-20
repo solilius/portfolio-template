@@ -2,8 +2,8 @@ import { AboutMeData, Game, GameEngine, LinkImageSource, MediaType, Platform } f
 
 export const PersonalInfo: AboutMeData = {
   name: "TAN WEN JUN",
-  role: "YOUR_ROLE",
-  introduction: "SHORT_INTRODUCTION",
+  role: "GGGGGG",
+  introduction: "GGGG",
   description: "TELL_ABOUT_YOURSELF",
   image: `${process.env.PUBLIC_URL}/images/Profile.jpg`,
   cvUri: `${process.env.PUBLIC_URL}/files/YOUR_CV.pdf`,
