@@ -1,125 +1,119 @@
+# Game Developer Portfolio Template
 
-# Game Development Portfolio Template
+A clean, modern portfolio for game developers. Show off your games with trailers and screenshot galleries, tell people about yourself, and give them an easy way to reach you.
 
-This is a simple and customizable portfolio template for game developers. It allows you to showcase your personal information, CV, and game projects in a structured way.
-You can check out [my portfolio](https://solilius.github.io/portfolio) for example
+See it in action on [my portfolio](https://solilius.github.io/portfolio).
 
-## Prerequisites
+**What you get**
+- A hero section with your photo, intro, social links and a few quick stats
+- An optional featured game with a trailer
+- A games grid with filters (originals, game jams, course projects) and a popup gallery for screenshots and YouTube videos
+- About, skills and contact sections, plus a CV download
+- Works on phones, tablets and desktops
+- Every bit of text and every link comes from **one file**: `src/data.ts`
 
-- Have a GitHub account.
-- Fork or clone this repository to your account (if not already done).
+## Getting started
 
-## 🚀 Getting Started
+You need [Node.js](https://nodejs.org) 18 or newer and a GitHub account.
 
-Follow these steps to set up and customize your portfolio.
+1. Click **Use this template** (or fork the repo), then clone your copy.
+2. Install and start it:
 
-### 1️⃣ Add Your CV
-Place a **PDF file** of your CV in the following directory:
+   ~~~sh
+   npm install
+   npm start
+   ~~~
 
-`public/files/my_cv.pdf`
+3. Open [http://localhost:3000](http://localhost:3000). The page reloads as you edit.
 
+## Make it yours
 
-### 2️⃣ Add Game Images
-For each game you want to showcase, create a folder inside:
+### 1. Your details: `src/data.ts`
 
-`public/images/games/my-awesome-game`
+Open `src/data.ts` and replace the placeholder text. Everything is commented:
 
-Each folder should contain the images related to that game.<br />
-`public/images/games/my-awesome-game/Game_Screenshot_1.jpg`<br />
-`public/images/games/my-awesome-game/Game_Screenshot_2.jpg`<br />
-`public/images/games/my-awesome-game/Game_Screenshot_3.jpg`
+- `PersonalInfo`: your name, role, headline, intro, bio, skills, stats and contact text
+- `socials`: your links (LinkedIn, GitHub, itch.io, email and so on)
+- `featured`: the name of the game to show in the big featured section, or `undefined` to hide it
+- `games`: your games
 
-### 3️⃣ Set Your Profile Picture
-Replace the default profile image with your own:
+Leave out what you don't need. For example, delete `stats` items or set `cvUrl: undefined` to hide the CV buttons.
 
-`public/images/Profile.jpg`
+### 2. Your games
 
+Put each game's screenshots in their own folder under `public/images/games/`, then list them in `src/data.ts`:
 
-### 4️⃣ Set the Favicon
-Replace the default favicon with your custom icon:
-
-`public/images/favicon.ico`
-
-### 5️⃣ Update Your Personal Information
-Edit the following file to add your personal details:
-
-`src/data.ts`
-
-Inside this file, update the `personalInfo` object with details such as:
-
-~~~js
-const PersonalInfo: AboutMeData = {
-  name: "YOUR_NAME",
-  role: "YOUR_ROLE",
-  introduction: "SHORT_INTRODUCTION",
-  description: "TELL_ABOUT_YOURSELF",
-  image: `${process.env.PUBLIC_URL}/images/Profile.jpg`,
-  cvUri: `${process.env.PUBLIC_URL}/files/YOUR_CV.pdf`,
-  links: {
-    github: "https://github.com/NAME",
-    itchIO: "https://NAME.itch.io",
-    linkedIn: "https://www.linkedin.com/in/NAME",
-  }
-};
+~~~ts
+{
+  name: "My Awesome Game",
+  description: "A short pitch: what does the player do, and why is it fun?",
+  genres: ["Action", "Roguelike"],
+  kind: "original", // "original", "jam" or "course"
+  platforms: [Platform.Windows, Platform.Web],
+  engine: GameEngine.Unity,
+  links: [
+    { icon: "steam", label: "Wishlist on Steam", url: "https://store.steampowered.com/app/..." },
+    { icon: "itch", label: "Play on itch.io", url: "https://you.itch.io/my-awesome-game" },
+  ],
+  media: [
+    video("YOUTUBE_VIDEO_ID"),
+    ...shots("my-awesome-game", ["Screenshot_1.jpg", "Screenshot_2.jpg"]),
+  ],
+  source: { name: "Global Game Jam 2026", url: "https://globalgamejam.org" }, // optional
+  cover: "/images/games/my-awesome-game/cover.jpg", // optional, defaults to the first screenshot
+},
 ~~~
 
-### 6️⃣ Add Your Games
-In the same `src/data.ts` file, update the `games` array to include your projects.
-~~~js
-const games: Game[] = [
-  {
-    name: "GAME_NAME",
-    description: "GAME_DESCRIPTION",
-    genres: ["GAME_GENRE", "GAME_GENRE..."],
-    platforms: [Platform.Windows],
-    engine: GameEngine.Unity,
-    source: { name: "COURSE_NAME"; url: "https://www.udemy.com/course/SOME_COURSE" } // Optional
-    links: [
-      { source: LinkImageSource.Github, url: "https://github.com/YOUR_REPO" },
-      { source: LinkImageSource.ItchIo, url: "https://YOUR_ITCH.itch.io/GAME_NAME" },
-    ],
-    media: [
-      { source: "/images/games/GAME_NAME/Screenshot_1.png", type: MediaType.Image },
-      { source: "https://www.youtube.com/embed/dQw4w9WgXcQ", type: MediaType.YouTube },
-      { source: "/images/games/GAME_NAME/Screenshot_2.png", type: MediaType.Image },
-      { source: "/images/games/GAME_NAME/Screenshot_3.png", type: MediaType.Image },
-      { source: "/images/games/GAME_NAME/Screenshot_4.png", type: MediaType.Image },
-    ],
-  }
-];
-~~~
+- `video("ID")` takes the ID from a YouTube link: for `youtube.com/watch?v=abc123`, use `video("abc123")`.
+- `shots("folder", [...])` points at images in `public/images/games/folder`.
+- Link icons: `github`, `linkedin`, `x`, `discord`, `steam`, `itch`, `googleplay`, `appstore`, `youtube`, `instagram`, `twitch`, `artstation`, `tiktok`, `whatsapp`, `mastodon`, `gamejolt`, `email`, `website`.
 
-### 7️⃣ Add Your Number to .env file
-1. Create `.env` file on the root 
-2. Add your WhatsApp number (including country code)
+**Tip:** keep screenshots around 1600px wide and save them as `.jpg` or `.webp`. Huge PNGs make the page slow.
 
-~~~
-REACT_APP_WA_NUMBER=+000000000000
-~~~
+### 3. Images and files
 
-## 🌍 Hosting Your Portfolio
+| What | Where |
+| --- | --- |
+| Your photo (square works best) | `public/images/Profile.jpg` |
+| Your CV | `public/files/YOUR_CV.pdf` (update `cvUrl` if you rename it) |
+| Your logo (optional, shown in the top bar) | anywhere in `public/images`, then set `logo` in `src/data.ts` |
+| Browser tab icon | `public/favicon.ico` |
+| Link preview image (1200x630) | `public/images/Preview.png` |
 
-Once your portfolio is ready, follow these steps to deploy it online.
+### 4. Colors and fonts
 
-###  Deploy with GitHub Pages
-Go to **Settings > Pages** in your repository and configure the deployment:
+All colors and fonts live at the top of `src/Styles/index.css`. Change `--accent` and `--accent-2` to restyle the buttons, highlights and headline gradient in one go.
 
-1. Set Source to **Deploy from Branch**.
-2. Choose the branch you want to deploy.
-3. Deply from your terminal 
+To change fonts, pick them on [Google Fonts](https://fonts.google.com), swap the font link in `public/index.html`, and set `--font-hero`, `--font-display` and `--font-body`.
 
-~~~sh
-npm run deploy
-~~~
+### 5. Page title and link preview
 
-Your portfolio will be live at:
+Edit the title, description and preview image tags at the top of `public/index.html`. That's what people see when you share your link on LinkedIn, Discord or WhatsApp.
+
+### 6. Optional: WhatsApp contact form
+
+Create a `.env` file in the project root with your number, including the country code:
 
 ~~~
-https://your-github-username.github.io/your-repo-name/
+REACT_APP_WA_NUMBER=000000000000
 ~~~
 
----
+A small "Send via WhatsApp" form then appears in the contact section. Without it, the contact section just shows your links.
 
-Your portfolio should now be set up and live. Enjoy!
+## Publish on GitHub Pages
 
+1. Push your changes to GitHub.
+2. Run:
 
+   ~~~sh
+   npm run deploy
+   ~~~
+
+   This builds the site and publishes it to a `gh-pages` branch.
+3. On GitHub, go to **Settings > Pages**, set **Source** to **Deploy from a branch**, and pick `gh-pages`.
+
+Your portfolio will be live at `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`. Run `npm run deploy` again whenever you make changes.
+
+## License
+
+MIT. Use it, change it, make it yours. A link back in the footer is appreciated but not required.
